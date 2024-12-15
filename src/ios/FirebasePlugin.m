@@ -1579,7 +1579,7 @@ static NSMutableArray* pendingGlobalJS = nil;
         if([self userNotSignedInError:command]) return;
         FIRUser* user = [FIRAuth auth].currentUser;
 
-        [user getIDTokenResultWithCompletion:^(FIRAuthTokenResult * _Nullable tokenResult, NSError * _Nullable error) {
+        [user getIDTokenResultForcingRefresh:YES completion:^(FIRAuthTokenResult * _Nullable tokenResult, NSError * _Nullable error) {
             if(error != nil){
                 [self sendPluginErrorWithError:error command:command];
                 return;
